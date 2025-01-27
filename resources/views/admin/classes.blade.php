@@ -24,17 +24,16 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Status</label>
-                                        <select class="form-control form-select " id="status" name="class_status">
-                                            <option {{($data && $data->status="enable")?"selected":''}}
-                                                value="enable">Enable</option>
-                                            <option {{($data && $data->status="disable")?"selected":''}}
-                                                value="disable">disable</option>
+                                        <label for="status">Status</label>
+                                        <select class="form-control form-select" id="status" name="class_status">
+                                            <option {{ ($data && $data->class_status == 'enable') ? 'selected' : '' }} value="enable">Enable</option>
+                                            <option {{ ($data && $data->class_status == 'disable') ? 'selected' : '' }} value="disable">Disable</option>
                                         </select>
                                         @error('class_status')
-                                        <span class="text-warning">{{$message}}</span>
+                                            <span class="text-warning">{{ $message }}</span>
                                         @enderror
                                     </div>
+
                                     <button name="submit" type="submit" class="btn btn-dark mr-2">Submit</button>
                                 </form>
                             </div>

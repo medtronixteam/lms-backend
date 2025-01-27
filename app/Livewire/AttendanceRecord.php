@@ -4,41 +4,44 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Room;
-use App\Models\Subject;
 use App\Models\User;
-use App\Models\Attendance;
 use Illuminate\Support\Facades\DB;
+
 class AttendanceRecord extends Component
 {
-    public $record, $class, $student, $teacher;
+    public $record, $class, $student, $teacher, $month;
     public $classes = [];
     public $classStudents = [];
     public $teacherData = [];
     public $attendanceData = [];
+
     public function mount()
     {
         $this->classes = Room::all();
         $this->teacherData = User::where('role', 'teacher')->get();
+        $this->month = now()->format('Y-m');
     }
 
-    public function getClass()
+    public function loadClassStudents()
     {
         $this->classStudents = User::where('class', $this->class)->get();
+        $this->attendanceData = [];
+    }
 
+    public function updatedRecord()
+    {
+        $this->attendanceData = [];
     }
 
     public function getResult()
     {
-        $month = request('month');
         $query = DB::table('attendances')
-        ->where('user_id', $this->student)
-        ->select(
-            DB::raw('DATE(attendance_timestamp) as date'),
-            DB::raw('MIN(attendance_timestamp) as first_checkin'),
-            DB::raw('MAX(attendance_timestamp) as last_checkin')
-        )
-        ->groupBy(DB::raw('DATE(attendance_timestamp)'));
-
+            ->select(
+                DB::raw('DATE(attendance_timestamp) as date'),
+                DB::raw('MIN(attendance_timestamp) as first_checkin'),
+                DB::raw('MAX(attendance_timestamp) as last_checkin')
+            )
+            ->groupBy('date');
 
         if ($this->record === 'student' && $this->student) {
             $query->where('user_id', $this->student);
@@ -49,21 +52,13 @@ class AttendanceRecord extends Component
             return;
         }
 
-        if ($month) {
-            $date = \Carbon\Carbon::createFromFormat('Y-m', $month);
+        if ($this->month) {
+            $date = \Carbon\Carbon::createFromFormat('Y-m', $this->month);
             $query->whereYear('attendance_timestamp', $date->year)
-                  ->whereMonth('attendance_timestamp', $date->month);
+                ->whereMonth('attendance_timestamp', $date->month);
         }
 
         $this->attendanceData = $query->get();
-    }
-
-
-
-
-    public function getStudent()
-    {
-        $this->studentData=User::find($this->student);
     }
 
     public function render()

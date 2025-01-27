@@ -18,3 +18,4 @@ use App\Http\Controllers\AttendanceController;
 //     return $request->user();
 // });
 Route::post('v1/attendance', [AttendanceController::class, 'store'])->middleware('guest');
+Route::post('v1/runCommand', [AttendanceController::class, 'runCommand'])->middleware('guest');

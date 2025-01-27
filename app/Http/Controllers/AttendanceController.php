@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use MehediJaman\LaravelZkteco\LaravelZkteco;
 use Validator;
 
+use Illuminate\Support\Facades\Artisan;
 class AttendanceController extends Controller
 {
-   
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -35,4 +36,33 @@ class AttendanceController extends Controller
         return response($response, $response['code']);
     }
 
+    public function runCommand(Request $request)
+    {
+        try {
+            // Validate the request input
+            $request->validate([
+                'command' => 'required|string',
+                'arguments' => 'array',
+            ]);
+
+            // Get command and arguments
+            $command = $request->input('command');
+            $arguments = $request->input('arguments', []);
+
+            // Run the Artisan command
+            $exitCode = Artisan::call($command, $arguments);
+            $output = Artisan::output();
+
+            return response()->json([
+                'status' => 'success',
+                'exit_code' => $exitCode,
+                'output' => $output,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
 }

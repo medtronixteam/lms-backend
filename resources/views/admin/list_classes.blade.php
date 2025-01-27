@@ -46,11 +46,6 @@
                                                                 <a onclick="confirmDelete({{ $item->id }})"
                                                                     href="javascript:void(0)"
                                                                     class="btn btn-danger btn-sm">Delete</a>
-                                                                {{-- @elseif(Auth::user()->role == 'accountant')
-                                                <a href="{{ Route('accountant.class.edit', ['classId' => $item->id]) }}"
-                                                    class="btn btn-success btn-sm">Accountant Edit</a>
-                                                <a href="{{Route('accountant.class.delete',['deleteId'=>$item->id])}}"
-                                                    class="btn btn-danger btn-sm">Delete</a> --}}
                                                             @endif
                                                         </td>
                                                     </tr>

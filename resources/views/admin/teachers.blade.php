@@ -65,9 +65,9 @@
                                             <label for="exampleInputPassword1">Status</label>
                                             <select class="form-control form-select " id="status"
                                                 name="status">
-                                                <option {{($data && $data->status="yes")?"selected":''}}
+                                                <option {{($data && $data->status=="yes")?"selected":''}}
                                                     value="yes">Yes</option>
-                                                <option {{($data && $data->status="no")?"selected":''}}
+                                                <option {{($data && $data->status=="no")?"selected":''}}
                                                     value="no">No</option>
                                             </select>
                                             @error('status')

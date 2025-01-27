@@ -39,9 +39,9 @@
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Status</label>
                                         <select class="form-control form-select " id="status" name="subject_status">
-                                            <option {{($data && $data->subject_status="yes")?"selected":''}}
+                                            <option {{($data && $data->subject_status=="yes")?"selected":''}}
                                                 value="yes">Yes</option>
-                                            <option {{($data && $data->subject_status="no")?"selected":''}}
+                                            <option {{($data && $data->subject_status=="no")?"selected":''}}
                                                 value="no">No</option>
                                         </select>
                                         @error('subject_status')

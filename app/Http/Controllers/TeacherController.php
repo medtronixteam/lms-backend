@@ -55,21 +55,23 @@ class TeacherController extends Controller
     function teacher_update(Request $request){
 
         $valid=$request->validate([
-            'teacher_name'=>'required',
+            'name'=>'required',
             'email'=>'required',
             'phone'=>'required',
             'qualification'=>'required',
             'address'=>'required',
-            'teacher_status'=>'required',
+            'status'=>'required',
             // 'salery'=>'required',
             // 'comeIn'=>'required',
         ]);
         User::find($request->teachers_id)->update([
-            'teacher_name'=>$request->teacher_name,
+            'name'=>$request->name,
             'email'=>$request->email,
             'phone'=>$request->phone,
             'qualification'=>$request->qualification,
             'address'=>$request->address,
+            'status'=>$request->status,
+            'role'=>'teacher',
             // 'salery'=>$request->salery,
             // 'comeIn'=>$request->comeIn,
         ]);
