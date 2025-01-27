@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'password' => Hash::make('Pass@786'),
             'role' => 'admin',
+            'gender'=>'male',
         ]);
     }
 }
