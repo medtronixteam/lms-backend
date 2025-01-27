@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('gender');
-            $table->string('father_cnic');
-            $table->string('religion');
-            $table->string('nationality');
-            $table->string('domicile');
-            $table->string('blood_group');
+            $table->string('gender')->nullable();
+            $table->string('father_cnic')->nullable();
+            $table->string('religion')->nullable();
+            $table->string('nationality')->nullable();
+            $table->string('domicile')->nullable();
+            $table->string('blood_group')->nullable();
 
         });
     }
@@ -28,12 +28,12 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('gender')->nullable();
-            $table->dropColumn('father_cnic')->nullable();
-            $table->dropColumn('religion')->nullable();
-            $table->dropColumn('nationality')->nullable();
-            $table->dropColumn('domicile')->nullable();
-            $table->dropColumn('blood_group')->nullable();
+            $table->dropColumn('gender');
+            $table->dropColumn('father_cnic');
+            $table->dropColumn('religion');
+            $table->dropColumn('nationality');
+            $table->dropColumn('domicile');
+            $table->dropColumn('blood_group');
         });
     }
 };
