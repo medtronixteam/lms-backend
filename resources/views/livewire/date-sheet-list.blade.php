@@ -35,6 +35,7 @@
                                             Delete
                                           </button>
                                         <a href="{{route('admin.sheet.edit',[$card->id])}}" class="btn btn-primary">Edit</a>
+                                        <a href="{{route('admin.sheet.print',[$card->id])}}" class="btn btn-dark">Print</a>
 
                                     </td>
                                 </tr>
