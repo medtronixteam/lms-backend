@@ -27,8 +27,8 @@ jobs:
           cd ..
           sudo docker compose build lms-backend
           sudo docker compose up lms-backend -d
-          sudo docker exec  contact-lms-backend-1 sh -c "sleep 60 && php artisan migrate"  
-          y
+          sudo docker exec  contact-lms-backend-1 sh -c "sleep 60 && php artisan migrate --force"  
+          
           exit
         EOF
 
