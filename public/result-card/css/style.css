@@ -1,0 +1,56 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.result .sub{
+  font-size: 17px;
+   font-weight: 500;
+    border: 1px solid black;
+    color: black;
+}
+.result .hr{
+  flex-grow: 1;
+  margin-bottom: 19px;
+  font-weight: 700;
+  border-bottom: 1px solid #000;
+}
+.result .para{
+  font-size: 12px;
+   font-weight: 500;
+    color: black;
+}
+.result .data{
+  border: 1px solid black;
+  color: black;
+  font-weight: 500;
+}
+
+/* step */
+*{
+  color: #325666;
+}
+.formsection .step{
+  letter-spacing: 3px;
+  font-size: 69px;
+  justify-content: center;
+  display: flex;
+  font-family: serif;
+}
+.formsection .future{
+  font-weight: 500;
+  font-size: 30px;
+}
+.formsection .first{
+  background-color: #325666;
+}
+.formsection .second{
+  color: #325666;
+}
+.formsection .hr{
+  flex-grow: 1;
+  margin-bottom: 19px;
+  font-weight: 700;
+  border-bottom: 1px solid #325666;
+}
+
